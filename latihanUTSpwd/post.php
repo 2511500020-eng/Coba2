@@ -1,8 +1,19 @@
 <?php
   session_start();
-  $sesnama = $_SESSION["nama"];
-  $sesemail = $_SESSION["email"];
-  $sespesan = $_SESSION["pesan"];
+  $sesnama = "";
+  if (isset($_SESSION["nama"])):
+      $sesnama = $_SESSION["nama"];
+  endif;
+
+  $sesemail = "";
+  if (isset($_SESSION["email"])):
+      $sesemail = $_SESSION["email"];
+  endif;
+
+  $sespesan = "";
+  if (isset($_SESSION["pesan"])):
+      $sespesan = $_SESSION["pesan"];
+  endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +35,7 @@
       <ul>
         <li><a href="#home">Beranda</a></li>
         <li><a href="#about">Tentang</a></li>
+        <li><a href="#biodata">Biodata</a></li>
         <li><a href="#contact">Kontak</a></li>
       </ul>
     </nav>
@@ -41,20 +53,18 @@
 
     <section id="about">
       <?php
-      $nim = 2511500010;
-      $NIM = '0344300002';
-      $nama = "Say'yid Abdullah";
-      $Nama = 'Al\'kautar Benyamin';
+      $nim = $_SESSION["nim"];
+      $nama = $_SESSION["namaLengkap"];
       ?>
       <h2>Tentang Saya</h2>
       <p><strong>NIM:</strong>
         <?php
-        echo $NIM;
+        echo $nim;
         ?>
       </p>
       <p><strong>Nama Lengkap:</strong>
         <?php
-        echo $Nama;
+        echo $nama;
         ?> &#128526;
       </p>
       <p><strong>Tempat Lahir:</strong> Pangkalpinang</p>
@@ -67,9 +77,26 @@
       <p><strong>Nama Adik:</strong> Christina Setiawan</p>
     </section>
 
+    <section id="biodata">
+      <h2>Biodata</h2>
+      <form action="post_proses.php" method="POST">
+
+        <label for="txtNim"><span>Nim:</span>
+          <input type="text" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required autocomplete="nim">
+        </label>
+
+        <label for="txtNamaLengkap"><span>Nama:</span>
+          <input type="text" id="txtNamaLengkap" name="txtNamaLengkap" placeholder="Masukkan nama lengkap" required autocomplete="namaLengkap">
+        </label>
+
+        <button type="submit">Simpan</button>
+        <button type="reset">Batal</button>
+      </form>
+    </section>
+
     <section id="contact">
       <h2>Kontak Kami</h2>
-      <form action="get_proses.php" method="GET">
+      <form action="post_proses.php" method="POST">
 
         <label for="txtNama"><span>Nama:</span>
           <input type="text" id="txtNama" name="txtNama" placeholder="Masukkan nama" required autocomplete="name">
@@ -88,11 +115,15 @@
         <button type="submit">Kirim</button>
         <button type="reset">Batal</button>
       </form>
+
+      <?php if(!empty($sesnama)): ?>
       <p>Terima kasih sudah menghubungi kami:
         <label>Nama: <strong><?php echo $sesnama ?></strong></label>
         <label>Email: <strong><?php echo $sesemail ?></strong></label>
         <label>Pesan: <strong><?php echo $sespesan ?></strong></label>
       </p>
+      <?php endif; ?>
+
     </section>
   </main>
 

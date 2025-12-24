@@ -18,6 +18,7 @@
       <ul>
         <li><a href="#home">Beranda</a></li>
         <li><a href="#about">Tentang</a></li>
+        <li><a href="#biodata">Biodata</a></li>
         <li><a href="#contact">Kontak</a></li>
       </ul>
     </nav>
@@ -66,7 +67,7 @@
       <form action="" method="GET">
 
         <label for="txtNamaLengkap"><span>Nama:</span>
-          <input type="text" id="txtNamaLengkap" name="txtNamaLengkap" placeholder="Masukkan namaLengkap" required autocomplete="namaLengkap">
+          <input type="text" id="txtNamaLengkap" name="txtNamaLengkap" placeholder="Masukkan nama lengkap" required autocomplete="namaLengkap">
         </label>
 
         <button type="submit">Simpan</button>
