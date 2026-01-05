@@ -1,18 +1,70 @@
 <?php
-session_start();
-require_once __DIR__ . '/fungsi.php';
+    session_start();
+    require 'koneksi.php';
+    require 'fungsi.php';
+
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT, [
+        'options' => ['min_range' => 1]
+    ]);
+
+    if (!$id) {
+        $_SESSION['flash_error_bio'] = 'Akses tidak valid.';
+        redirect_ke('readBio.php');
+    }
+
+    $stmt = mysqli_prepare($conn, "SELECT id, nim, namalengkap, tempat, tanggal, hobi, pekerjaan, pasangan, ortu, kakak, adik FROM tbl_biodata WHERE id = ? LIMIT 1");
+    if (!$stmt) {
+        $_SESSION['flash_error_bio'] = 'Query tidak benar.';
+        redirect_ke('readBio.php');
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($res);
+    mysqli_stmt_close($stmt);
+
+    if(!$row) {
+        $_SESSION['flash_error_bio'] = 'Record tidak ditemukan.';
+        redirect_ke('readBio.php');
+    }
+
+    $nim = $row["nim"] ?? "";
+    $namalengkap = $row["namalengkap"] ?? "";
+    $tempat = $row["tempat"] ?? "";
+    $tanggal = $row["tanggal"] ?? "";
+    $hobi = $row["hobi"] ?? "";
+    $pasangan = $row["pasangan"] ?? "";
+    $pekerjaan = $row["pekerjaan"] ?? "";
+    $ortu = $row["ortu"] ?? "";
+    $kakak = $row["kakak"] ?? "";
+    $adik = $row["adik"] ?? "";
+
+    $flash_error_bio = $_SESSION['flash_error_bio'] ?? '';
+    $old = $_SESSION['$old'] ?? [];
+    unset($_SESSION['flash_error_bio'], $_SESSION['old']);
+    if (!empty($old)) {
+      $nim = $row["nim"] ?? $nim;
+      $namalengkap = $row["namalengkap"] ?? $namalengkap;
+      $tempat = $row["tempat"] ?? $tempat;
+      $tanggal = $row["tanggal"] ?? $tanggal;
+      $hobi = $row["hobi"] ?? $hobi;
+      $pasangan = $row["pasangan"] ?? $pasangan;
+      $pekerjaan = $row["pekerjaan"] ?? $pekerjaan;
+      $ortu = $row["ortu"] ?? $ortu;
+      $kakak = $row["kakak"] ?? $kakak;
+      $adik = $row["adik"] ?? $adik;
+    }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Judul Halaman</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <header>
     <h1>Ini Header</h1>
@@ -29,25 +81,8 @@ require_once __DIR__ . '/fungsi.php';
   </header>
 
   <main>
-    <section id="home">
-      <h2>Selamat Datang</h2>
-      <?php
-      echo "halo dunia!<br>";
-      echo "nama saya hadi";
-      ?>
-      <p>Ini contoh paragraf HTML.</p>
-    </section>
-
-    <?php
-    $flash_sukses_bio = $_SESSION['flash_sukses_bio'] ?? '';
-    $flash_error_bio = $_SESSION['flash_error_bio'] ?? '';
-    $old = $_SESSION['old'] ?? '';
-
-    unset($_SESSION['flash_sukses_bio'], $_SESSION['flash_error_bio'], $_SESSION['old']);
-    ?>
-
     <section id="biodata">
-      <h2>Biodata Sederhana Mahasiswa</h2>
+      <h2>Edit Biodata</h2>
 
       <?php if (!empty($flash_sukses_bio)): ?>
         <div style="padding:10px; margin-bottom:10px; background:#d4edda; color:#155724; border-radius:6px">
@@ -63,6 +98,8 @@ require_once __DIR__ . '/fungsi.php';
 
       <form action="prosesBio.php" method="POST">
 
+        <input type="text" name="id" value="<?= (int)$id; ?>">
+    
         <label for="txtNim"><span>NIM:</span>
           <input type="text" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required>
         </label>
@@ -105,72 +142,11 @@ require_once __DIR__ . '/fungsi.php';
 
         <button type="submit">Kirim</button>
         <button type="reset">Batal</button>
+        <a href="readBio.php" class="reset">Kembali</a>
       </form>
-    </section>
-
-    <section id="about">
-      <h2>Tentang Saya</h2>
-            <?php include 'read_inc_bio.php'; ?>
-    </section>
-
-    <?php
-    $flash_sukses = $_SESSION['flash_sukses'] ?? '';
-    $flash_error = $_SESSION['flash_error'] ?? '';
-    $old = $_SESSION['old'] ?? '';
-
-    unset($_SESSION['flash_sukses'], $_SESSION['flash_error'], $_SESSION['old']);
-    ?>
-
-    <section id="contact">
-      <h2>Kontak Kami</h2>
-
-      <?php if (!empty($flash_sukses)): ?>
-        <div style="padding:10px; margin-bottom:10px; background:#d4edda; color:#155724; border-radius:6px">
-          <?= $flash_sukses; ?>
-        </div>
-      <?php endif; ?>
-
-      <?php if (!empty($flash_error)): ?>
-        <div style="padding:10px; margin-bottom:10px; background:#f8d7da; color:#721c24; border-radius:6px">
-          <?= $flash_error; ?>  
-        </div>
-      <?php endif; ?>
-
-      <form action="proses.php" method="POST">
-
-        <label for="txtNama"><span>Nama:</span>
-          <input type="text" id="txtNama" name="txtNama" placeholder="Masukkan nama" required autocomplete="name" value="<?= isset($old['nama']) ? htmlspecialchars($old['nama']) : '' ?>">
-        </label>
-
-        <label for="txtEmail"><span>Email:</span>
-          <input type="email" id="txtEmail" name="txtEmail" placeholder="Masukkan email" required autocomplete="email" value="<?= isset($old['email']) ? htmlspecialchars($old['email']) : '' ?>">
-        </label>
-
-        <label for="txtPesan"><span>Pesan Anda:</span>
-          <textarea id="txtPesan" name="txtPesan" rows="4" placeholder="Tulis pesan anda..." required><?= isset($old['pesan']) ? htmlspecialchars($old['pesan']) : '' ?></textarea>
-          <small id="charCount">0/200 karakter</small>
-        </label>
-
-        <label for="txtCaptcha"><span>2 + 3 =</span>
-          <input id="txtCaptcha" name="txtCaptcha" placeholder="Tulis jawaban anda..." required value="<?= isset($old['captcha']) ? htmlspecialchars($old['captcha']) : '' ?>">
-        </label>
-
-        <button type="submit">Kirim</button>
-        <button type="reset">Batal</button>
-      </form>
-      
-      <br>
-      <hr>
-      <h2>Yang menghubungi kami</h2>
-      <?php include 'read_inc.php'; ?>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Yohanes Setiawan Japriadi [0344300002]</p>
-  </footer>
-
   <script src="script.js"></script>
 </body>
-
 </html>

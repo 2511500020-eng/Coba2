@@ -14,4 +14,6 @@ Telah:<br>
     <li>buat file edit.php dan isinya</li>
     <li>buat file proses_update.php dan isinya</li>
     <li>ganti tipe input cid jadi hidden</li>
+    <li>NOTE: BIKIN OLD DI FORM BIO</li>
+
 </ol>
