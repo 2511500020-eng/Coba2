@@ -12,9 +12,9 @@ if (!$q) {
 ?>
 
 <?php
-    $flash_sukses = $_SESSION['flash_sukses'] ?? '';
-    $flash_error = $_SESSION['flash_error'] ?? '';
-    unset($_SESSION['flash_sukses'], $_SESSION['flash_error']);
+    $flash_sukses = $_SESSION['flash_sukses_bio'] ?? '';
+    $flash_error = $_SESSION['flash_error_bio'] ?? '';
+    unset($_SESSION['flash_sukses_bio'], $_SESSION['flash_error_bio']);
 ?>
 
 <?php if (!empty($flash_sukses)): ?>
@@ -49,7 +49,10 @@ if (!$q) {
     <?php while ($row = mysqli_fetch_assoc($q)): ?>
         <tr>
             <td><?= $no++; ?></td>
-            <td><a href="editBio.php?id=<?= (int)$row['id']; ?>">Edit</a></td>
+            <td>
+                <a href="editBio.php?id=<?= (int)$row['id']; ?>">Edit</a>
+                <a onclick="return confirm('Hapus <?= htmlspecialchars($row['namalengkap']); ?>?')" href="proses_delete_bio.php?id=<?= (int)$row['id']; ?>">Delete</a>
+            </td>
             <td><?= $row['id']; ?></td>
             <td><?= htmlspecialchars($row['nim']); ?></td>
             <td><?= htmlspecialchars($row['namalengkap']); ?></td>
