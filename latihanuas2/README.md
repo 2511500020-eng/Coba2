@@ -14,5 +14,6 @@ Telah:<br>
     <li>ganti target redirect.ke dalam file proses_bio.php ke index.php#biodata</li>
     <li>sanitasi hasil post form biodata</li>
     <li>ganti variabel errors menjadi errors_bio</li>
+    <li>validasi hasil post form biodata</li>
 
 </ol>

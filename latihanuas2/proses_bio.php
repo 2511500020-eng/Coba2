@@ -25,34 +25,48 @@ $adik = bersihkan($_POST['txtNmAdik'] ?? '');
 #Validasi sederhana
 $errors = []; #ini array untuk menampung semua error yang ada
 
-if ($nama === '') {
+if ($nim === '') {
+  $errors[] = 'Nim wajib diisi.';
+}
+
+if ($namalengkap === '') {
   $errors[] = 'Nama wajib diisi.';
 }
 
-if ($email === '') {
-  $errors[] = 'Email wajib diisi.';
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  $errors[] = 'Format e-mail tidak valid.';
+if ($tempat === '') {
+  $errors[] = 'Tempat lahir wajib diisi.';
 }
 
-if ($pesan === '') {
-  $errors[] = 'Pesan wajib diisi.';
+if ($tanggal === '') {
+  $errors[] = 'Tanggal lahir wajib diisi.';
 }
 
-if ($captcha === '') {
-  $errors[] = 'Pertanyaan wajib diisi.';
+if ($hobi === '') {
+  $errors[] = 'Hobi wajib diisi.';
 }
 
-if (mb_strlen($nama) < 3) {
+if ($pasangan === '') {
+  $errors[] = 'Nama pasangan wajib diisi.';
+}
+
+if ($pekerjaan === '') {
+  $errors[] = 'Pekerjaan wajib diisi.';
+}
+
+if ($ortu === '') {
+  $errors[] = 'Nama orang tua wajib diisi.';
+}
+
+if ($kakak === '') {
+  $errors[] = 'Nama kakak wajib diisi.';
+}
+
+if ($adik === '') {
+  $errors[] = 'Nama adik wajib diisi.';
+}
+
+if (mb_strlen($namalengkap) < 3) {
   $errors[] = 'Nama minimal 3 karakter.';
-}
-
-if (mb_strlen($pesan) < 10) {
-  $errors[] = 'Pesan minimal 10 karakter.';
-}
-
-if ($captcha!=="5") {
-  $errors[] = 'Jawaban '. $captcha.' captcha salah.';
 }
 
 /*
