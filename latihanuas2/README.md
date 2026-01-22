@@ -11,5 +11,6 @@ Telah:<br>
     <li>buat tabel tbl_biodata</li>
     <li>copy paste file proses.php dan rename jadi proses_bio php</li>
     <li>ganti action form biodata menjadi proses_bio.php</li>
+    <li>ganti target redirect.ke dalam file proses_bio.php ke index.php#biodata</li>
 
 </ol>
