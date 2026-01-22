@@ -24,5 +24,6 @@ Telah:<br>
     <li>menampilkan flash sukses dan error di form biodata</li>
     <li>menampilkan nilai old di form bio klo error</li>
     <li>copas file read.php dan rename jadi read_bio.php</li>
+    <li>select dari tbl_biodata by id</li>
 
 </ol>
