@@ -9,5 +9,6 @@ Telah:<br>
 <ol>
     <li>ekstrak bahan uas</li>
     <li>buat tabel tbl_biodata</li>
+    <li>copy paste file proses.php dan rename jadi proses_bio php</li>
 
 </ol>
