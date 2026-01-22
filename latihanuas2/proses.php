@@ -16,43 +16,43 @@ $pesan = bersihkan($_POST['txtPesan'] ?? '');
 $captcha = bersihkan($_POST['txtCaptcha'] ?? '');
 
 #Validasi sederhana
-$errors = []; #ini array untuk menampung semua error yang ada
+$errors_bio = []; #ini array untuk menampung semua error yang ada
 
 if ($nama === '') {
-  $errors[] = 'Nama wajib diisi.';
+  $errors_bio[] = 'Nama wajib diisi.';
 }
 
 if ($email === '') {
-  $errors[] = 'Email wajib diisi.';
+  $errors_bio[] = 'Email wajib diisi.';
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  $errors[] = 'Format e-mail tidak valid.';
+  $errors_bio[] = 'Format e-mail tidak valid.';
 }
 
 if ($pesan === '') {
-  $errors[] = 'Pesan wajib diisi.';
+  $errors_bio[] = 'Pesan wajib diisi.';
 }
 
 if ($captcha === '') {
-  $errors[] = 'Pertanyaan wajib diisi.';
+  $errors_bio[] = 'Pertanyaan wajib diisi.';
 }
 
 if (mb_strlen($nama) < 3) {
-  $errors[] = 'Nama minimal 3 karakter.';
+  $errors_bio[] = 'Nama minimal 3 karakter.';
 }
 
 if (mb_strlen($pesan) < 10) {
-  $errors[] = 'Pesan minimal 10 karakter.';
+  $errors_bio[] = 'Pesan minimal 10 karakter.';
 }
 
 if ($captcha!=="5") {
-  $errors[] = 'Jawaban '. $captcha.' captcha salah.';
+  $errors_bio[] = 'Jawaban '. $captcha.' captcha salah.';
 }
 
 /*
 kondisi di bawah ini hanya dikerjakan jika ada error, 
 simpan nilai lama dan pesan error, lalu redirect (konsep PRG)
 */
-if (!empty($errors)) {
+if (!empty($errors_bio)) {
   $_SESSION['old'] = [
     'nama'  => $nama,
     'email' => $email,
@@ -60,7 +60,7 @@ if (!empty($errors)) {
     'captcha' => $captcha,
   ];
 
-  $_SESSION['flash_error'] = implode('<br>', $errors);
+  $_SESSION['flash_error'] = implode('<br>', $errors_bio);
   redirect_ke('index.php#contact');
 }
 
