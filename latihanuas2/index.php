@@ -38,25 +38,33 @@ require_once __DIR__ . '/fungsi.php';
       <p>Ini contoh paragraf HTML.</p>
     </section>
 
+    <?php
+    $flash_sukses_bio = $_SESSION['flash_sukses_bio'] ?? ''; #jika query sukses
+    $flash_error_bio  = $_SESSION['flash_error_bio'] ?? ''; #jika ada error
+    $old_bio          = $_SESSION['old_bio'] ?? []; #untuk nilai lama form
+
+    unset($_SESSION['flash_sukses_bio'], $_SESSION['flash_error_bio'], $_SESSION['old_bio']); #bersihkan 3 session ini
+    ?>
+
     <section id="biodata">
       <h2>Biodata Sederhana Mahasiswa</h2>
 
-      <?php if (!empty($flash_sukses)): ?>
+      <?php if (!empty($flash_sukses_bio)): ?>
         <div style="padding:10px; margin-bottom:10px; background:#d4edda; color:#155724; border-radius:6px;">
-          <?= $flash_sukses; ?>
+          <?= $flash_sukses_bio; ?>
         </div>
       <?php endif; ?>
 
-      <?php if (!empty($flash_error)): ?>
+      <?php if (!empty($flash_error_bio)): ?>
         <div style="padding:10px; margin-bottom:10px; background:#f8d7da; color:#721c24; border-radius:6px;">
-          <?= $flash_error; ?>
+          <?= $flash_error_bio; ?>
         </div>
       <?php endif; ?>
 
       <form action="proses_bio.php" method="POST">
 
         <label for="txtNim"><span>NIM:</span>
-          <input type="number" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required>
+          <input type="number" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required value="<?= isset($old['email']) ? htmlspecialchars($old['email']) : '' ?>">
         </label>
 
         <label for="txtNmLengkap"><span>Nama Lengkap:</span>

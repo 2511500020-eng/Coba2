@@ -21,5 +21,6 @@ Telah:<br>
     <li>sesuaikan bind param agar sesuai dengan tabel tbl_biodata</li>
     <li>ganti flash_error jadi flash_error_bio</li>
     <li>ganti flash_sukses jadi flash_sukses_bio</li>
+    <li>menampilkan flash sukses dan error di form biodata</li>
 
 </ol>
