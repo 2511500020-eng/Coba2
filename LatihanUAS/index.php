@@ -110,7 +110,7 @@ require_once __DIR__ . '/fungsi.php';
 
     <section id="about">
       <h2>Tentang Saya</h2>
-            <?php include 'read_inc_bio.php'; ?>
+      <?php include 'read_inc_bio.php'; ?>
     </section>
 
     <?php
