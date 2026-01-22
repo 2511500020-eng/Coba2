@@ -8,6 +8,6 @@ Telah:<br>
 <br>
 <ol>
     <li>ekstrak bahan uas</li>
-    <li>buat tbl_biodata</li>
+    <li>buat tabel tbl_biodata</li>
 
 </ol>
