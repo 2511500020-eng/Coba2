@@ -23,5 +23,6 @@ Telah:<br>
     <li>ganti flash_sukses jadi flash_sukses_bio</li>
     <li>menampilkan flash sukses dan error di form biodata</li>
     <li>menampilkan nilai old di form bio klo error</li>
+    <li>copas file read.php dan rename jadi read_bio.php</li>
 
 </ol>
