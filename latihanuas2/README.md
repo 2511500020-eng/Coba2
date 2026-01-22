@@ -29,5 +29,6 @@ Telah:<br>
     <li>ganti flash_error jadi flash_error_bio</li>
     <li>sesuaikan nama kolom tabel</li>
     <li>isi tabel</li>
+    <li>copas file edit.php dan rename jadi edit_bio.php</li>
 
 </ol>
