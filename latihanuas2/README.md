@@ -26,5 +26,7 @@ Telah:<br>
     <li>copas file read.php dan rename jadi read_bio.php</li>
     <li>select dari tbl_biodata by id</li>
     <li>ganti flash_sukses jadi flash_sukses_bio</li>
+    <li>ganti flash_error jadi flash_error_bio</li>
+    <li>sesuaikan nama kolom tabel</li>
 
 </ol>
