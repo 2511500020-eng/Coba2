@@ -32,5 +32,6 @@ Telah:<br>
     <li>copas file edit.php dan rename jadi edit_bio.php</li>
     <li>ganti cid jadi id</li>
     <li>ganti flash_error jadi flash_error_bio</li>
+    <li>ganti redirect ke read_bio.php</li>
 
 </ol>
