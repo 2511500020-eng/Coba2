@@ -15,5 +15,6 @@ Telah:<br>
     <li>sanitasi hasil post form biodata</li>
     <li>ganti variabel errors menjadi errors_bio</li>
     <li>validasi hasil post form biodata</li>
-
+    <li>ganti old menjadi old_bio</li>
+    <li>bikin isi array old_bio sesuai variabel biodata</li>
 </ol>

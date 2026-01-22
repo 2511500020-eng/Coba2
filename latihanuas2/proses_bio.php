@@ -23,65 +23,71 @@ $kakak = bersihkan($_POST['txtNmKakak'] ?? '');
 $adik = bersihkan($_POST['txtNmAdik'] ?? '');
 
 #Validasi sederhana
-$errors = []; #ini array untuk menampung semua error yang ada
+$errors_bio = []; #ini array untuk menampung semua error yang ada
 
 if ($nim === '') {
-  $errors[] = 'Nim wajib diisi.';
+  $errors_bio[] = 'Nim wajib diisi.';
 }
 
 if ($namalengkap === '') {
-  $errors[] = 'Nama wajib diisi.';
+  $errors_bio[] = 'Nama wajib diisi.';
 }
 
 if ($tempat === '') {
-  $errors[] = 'Tempat lahir wajib diisi.';
+  $errors_bio[] = 'Tempat lahir wajib diisi.';
 }
 
 if ($tanggal === '') {
-  $errors[] = 'Tanggal lahir wajib diisi.';
+  $errors_bio[] = 'Tanggal lahir wajib diisi.';
 }
 
 if ($hobi === '') {
-  $errors[] = 'Hobi wajib diisi.';
+  $errors_bio[] = 'Hobi wajib diisi.';
 }
 
 if ($pasangan === '') {
-  $errors[] = 'Nama pasangan wajib diisi.';
+  $errors_bio[] = 'Nama pasangan wajib diisi.';
 }
 
 if ($pekerjaan === '') {
-  $errors[] = 'Pekerjaan wajib diisi.';
+  $errors_bio[] = 'Pekerjaan wajib diisi.';
 }
 
 if ($ortu === '') {
-  $errors[] = 'Nama orang tua wajib diisi.';
+  $errors_bio[] = 'Nama orang tua wajib diisi.';
 }
 
 if ($kakak === '') {
-  $errors[] = 'Nama kakak wajib diisi.';
+  $errors_bio[] = 'Nama kakak wajib diisi.';
 }
 
 if ($adik === '') {
-  $errors[] = 'Nama adik wajib diisi.';
+  $errors_bio[] = 'Nama adik wajib diisi.';
 }
 
 if (mb_strlen($namalengkap) < 3) {
-  $errors[] = 'Nama minimal 3 karakter.';
+  $errors_bio[] = 'Nama minimal 3 karakter.';
 }
 
 /*
 kondisi di bawah ini hanya dikerjakan jika ada error, 
 simpan nilai lama dan pesan error, lalu redirect (konsep PRG)
 */
-if (!empty($errors)) {
-  $_SESSION['old'] = [
-    'nama'  => $nama,
-    'email' => $email,
-    'pesan' => $pesan,
-    'captcha' => $captcha,
+if (!empty($errors_bio)) {
+  $_SESSION['old_bio'] = [
+    'nim'  => $nim,
+    'namalengkap' => $namalengkap,
+    'tempat' => $tempat,
+    'tanggal' => $tanggal,
+    'hobi' => $hobi,
+    'pasangan' => $pasangan,
+    'pekerjaan' => $pekerjaan,
+    'ortu' => $ortu,
+    'kakak' => $kakak,
+    'adik' => $adik,
   ];
 
-  $_SESSION['flash_error'] = implode('<br>', $errors);
+  $_SESSION['flash_error'] = implode('<br>', $errors_bio);
   redirect_ke('index.php#biodata');
 }
 
@@ -97,12 +103,12 @@ if (!$stmt) {
 #bind parameter dan eksekusi (s = string)
 mysqli_stmt_bind_param($stmt, "sss", $nama, $email, $pesan);
 
-if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old value, beri pesan sukses
-  unset($_SESSION['old']);
+if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old_bio value, beri pesan sukses
+  unset($_SESSION['old_bio']);
   $_SESSION['flash_sukses'] = 'Terima kasih, data Anda sudah tersimpan.';
   redirect_ke('index.php#biodata'); #pola PRG: kembali ke form / halaman home
-} else { #jika gagal, simpan kembali old value dan tampilkan error umum
-  $_SESSION['old'] = [
+} else { #jika gagal, simpan kembali old_bio value dan tampilkan error umum
+  $_SESSION['old_bio'] = [
     'nama'  => $nama,
     'email' => $email,
     'pesan' => $pesan,
