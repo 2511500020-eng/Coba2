@@ -22,5 +22,6 @@ Telah:<br>
     <li>ganti flash_error jadi flash_error_bio</li>
     <li>ganti flash_sukses jadi flash_sukses_bio</li>
     <li>menampilkan flash sukses dan error di form biodata</li>
+    <li>menampilkan nilai old di form bio klo error</li>
 
 </ol>
