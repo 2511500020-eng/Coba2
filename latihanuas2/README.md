@@ -28,5 +28,6 @@ Telah:<br>
     <li>ganti flash_sukses jadi flash_sukses_bio</li>
     <li>ganti flash_error jadi flash_error_bio</li>
     <li>sesuaikan nama kolom tabel</li>
+    <li>isi tabel</li>
 
 </ol>
