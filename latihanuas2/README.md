@@ -31,5 +31,6 @@ Telah:<br>
     <li>isi tabel</li>
     <li>copas file edit.php dan rename jadi edit_bio.php</li>
     <li>ganti cid jadi id</li>
+    <li>ganti flash_error jadi flash_error_bio</li>
 
 </ol>
