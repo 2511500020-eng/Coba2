@@ -30,5 +30,6 @@ Telah:<br>
     <li>sesuaikan nama kolom tabel</li>
     <li>isi tabel</li>
     <li>copas file edit.php dan rename jadi edit_bio.php</li>
+    <li>ganti cid jadi id</li>
 
 </ol>
