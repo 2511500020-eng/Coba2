@@ -105,7 +105,7 @@ mysqli_stmt_bind_param($stmt, "isssssssss", $nim, $namalengkap, $tempat, $tangga
 
 if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old_bio value, beri pesan sukses
   unset($_SESSION['old_bio']);
-  $_SESSION['flash_sukses'] = 'Terima kasih, data Anda sudah tersimpan.';
+  $_SESSION['flash_sukses_bio'] = 'Terima kasih, data Anda sudah tersimpan.';
   redirect_ke('index.php#biodata'); #pola PRG: kembali ke form / halaman home
 } else { #jika gagal, simpan kembali old_bio value dan tampilkan error umum
   $_SESSION['old_bio'] = [
