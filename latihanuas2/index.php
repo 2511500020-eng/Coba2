@@ -40,10 +40,23 @@ require_once __DIR__ . '/fungsi.php';
 
     <section id="biodata">
       <h2>Biodata Sederhana Mahasiswa</h2>
+
+      <?php if (!empty($flash_sukses)): ?>
+        <div style="padding:10px; margin-bottom:10px; background:#d4edda; color:#155724; border-radius:6px;">
+          <?= $flash_sukses; ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if (!empty($flash_error)): ?>
+        <div style="padding:10px; margin-bottom:10px; background:#f8d7da; color:#721c24; border-radius:6px;">
+          <?= $flash_error; ?>
+        </div>
+      <?php endif; ?>
+
       <form action="proses_bio.php" method="POST">
 
         <label for="txtNim"><span>NIM:</span>
-          <input type="text" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required>
+          <input type="number" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required>
         </label>
 
         <label for="txtNmLengkap"><span>Nama Lengkap:</span>

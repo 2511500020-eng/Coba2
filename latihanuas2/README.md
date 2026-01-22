@@ -19,5 +19,6 @@ Telah:<br>
     <li>bikin isi array old_bio sesuai variabel biodata</li>
     <li>sesuaikan insert into agar sesuai dengan tabel tbl_biodata</li>
     <li>sesuaikan bind param agar sesuai dengan tabel tbl_biodata</li>
+    <li>ganti flash_error jadi flash_error_bio</li>
 
 </ol>
