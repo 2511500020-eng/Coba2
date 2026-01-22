@@ -17,4 +17,6 @@ Telah:<br>
     <li>validasi hasil post form biodata</li>
     <li>ganti old menjadi old_bio</li>
     <li>bikin isi array old_bio sesuai variabel biodata</li>
+    <li>sesuaikan insert into agar sesuai dengan tabel tbl_biodata</li>
+
 </ol>
