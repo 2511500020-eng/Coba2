@@ -3,7 +3,7 @@
   require 'koneksi.php';
   require 'fungsi.php';
 
-  $sql = "SELECT * FROM tbl_tamu ORDER BY cid DESC";
+  $sql = "SELECT * FROM tbl_biodata ORDER BY id DESC";
   $q = mysqli_query($conn, $sql);
   if (!$q) {
     die("Query error: " . mysqli_error($conn));
@@ -11,23 +11,23 @@
 ?>
 
 <?php
-  $flash_sukses = $_SESSION['flash_sukses'] ?? ''; #jika query sukses
-  $flash_error  = $_SESSION['flash_error'] ?? ''; #jika ada error
+  $flash_sukses_bio = $_SESSION['flash_sukses_bio'] ?? ''; #jika query sukses
+  $flash_error_bio  = $_SESSION['flash_error_bio'] ?? ''; #jika ada error
   #bersihkan session ini
-  unset($_SESSION['flash_sukses'], $_SESSION['flash_error']); 
+  unset($_SESSION['flash_sukses_bio'], $_SESSION['flash_error_bio']); 
 ?>
 
-<?php if (!empty($flash_sukses)): ?>
+<?php if (!empty($flash_sukses_bio)): ?>
         <div style="padding:10px; margin-bottom:10px; 
           background:#d4edda; color:#155724; border-radius:6px;">
-          <?= $flash_sukses; ?>
+          <?= $flash_sukses_bio; ?>
         </div>
 <?php endif; ?>
 
-<?php if (!empty($flash_error)): ?>
+<?php if (!empty($flash_error_bio)): ?>
         <div style="padding:10px; margin-bottom:10px; 
           background:#f8d7da; color:#721c24; border-radius:6px;">
-          <?= $flash_error; ?>
+          <?= $flash_error_bio; ?>
         </div>
 <?php endif; ?>
 
