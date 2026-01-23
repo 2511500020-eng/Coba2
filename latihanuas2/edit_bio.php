@@ -110,46 +110,67 @@
     </header>
 
     <main>
-      <section id="contact">
-        <h2>Edit Buku Tamu</h2>
-        <?php if (!empty($flash_error_bio)): ?>
-          <div style="padding:10px; margin-bottom:10px; 
-            background:#f8d7da; color:#721c24; border-radius:6px;">
-            <?= $flash_error_bio; ?>
-          </div>
-        <?php endif; ?>
-        <form action="proses_update.php" method="POST">
+    <section id="biodata">
+      <h2>Biodata Sederhana Mahasiswa</h2>
 
-          <input type="text" name="id" value="<?= (int)$id; ?>">
+      <?php if (!empty($flash_sukses_bio)): ?>
+        <div style="padding:10px; margin-bottom:10px; background:#d4edda; color:#155724; border-radius:6px;">
+          <?= $flash_sukses_bio; ?>
+        </div>
+      <?php endif; ?>
 
-          <label for="txtNama"><span>Nama:</span>
-            <input type="text" id="txtNama" name="txtNamaEd" 
-              placehold_bioer="Masukkan nama" required autocomplete="name"
-              value="<?= !empty($nama) ? $nama : '' ?>">
-          </label>
+      <?php if (!empty($flash_error_bio)): ?>
+        <div style="padding:10px; margin-bottom:10px; background:#f8d7da; color:#721c24; border-radius:6px;">
+          <?= $flash_error_bio; ?>
+        </div>
+      <?php endif; ?>
 
-          <label for="txtEmail"><span>Email:</span>
-            <input type="email" id="txtEmail" name="txtEmailEd" 
-              placehold_bioer="Masukkan email" required autocomplete="email"
-              value="<?= !empty($email) ? $email : '' ?>">
-          </label>
+      <form action="proses_bio.php" method="POST">
 
-          <label for="txtPesan"><span>Pesan Anda:</span>
-            <textarea id="txtPesan" name="txtPesanEd" rows="4" 
-              placehold_bioer="Tulis pesan anda..." 
-              required><?= !empty($pesan) ? $pesan : '' ?></textarea>
-          </label>
+        <label for="txtNim"><span>NIM:</span>
+          <input type="number" id="txtNim" name="txtNim" placeholder="Masukkan NIM" required value="<?= !empty($nim) ? $nim : '' ?>">
+        </label>
 
-          <label for="txtCaptcha"><span>Captcha 2 x 3 = ?</span>
-            <input type="number" id="txtCaptcha" name="txtCaptcha" 
-              placehold_bioer="Jawab Pertanyaan..." required>
-          </label>
+        <label for="txtNmLengkap"><span>Nama Lengkap:</span>
+          <input type="text" id="txtNmLengkap" name="txtNmLengkap" placeholder="Masukkan Nama Lengkap" required value="<?= !empty($namalengkap) ? $namalengkap : '' ?>">
+        </label>
 
-          <button type="submit">Kirim</button>
-          <button type="reset">Batal</button>
-          <a href="read.php" class="reset">Kembali</a>
-        </form>
-      </section>
+        <label for="txtT4Lhr"><span>Tempat Lahir:</span>
+          <input type="text" id="txtT4Lhr" name="txtT4Lhr" placeholder="Masukkan Tempat Lahir" required value="<?= !empty($tempat) ? $tempat : '' ?>">
+        </label>
+
+        <label for="txtTglLhr"><span>Tanggal Lahir:</span>
+          <input type="text" id="txtTglLhr" name="txtTglLhr" placeholder="Masukkan Tanggal Lahir" required value="<?= !empty($tanggal) ? $tanggal : '' ?>">
+        </label>
+
+        <label for="txtHobi"><span>Hobi:</span>
+          <input type="text" id="txtHobi" name="txtHobi" placeholder="Masukkan Hobi" required value="<?= !empty($hobi) ? $hobi : '' ?>">
+        </label>
+
+        <label for="txtPasangan"><span>Pasangan:</span>
+          <input type="text" id="txtPasangan" name="txtPasangan" placeholder="Masukkan Nama Pasangan" required value="<?= !empty($pasangan) ? $pasangan : '' ?>">
+        </label>
+
+        <label for="txtKerja"><span>Pekerjaan:</span>
+          <input type="text" id="txtKerja" name="txtKerja" placeholder="Masukkan Pekerjaan" required value="<?= !empty($pekerjaan) ? $pekerjaan : '' ?>">
+        </label>
+
+        <label for="txtNmOrtu"><span>Nama Orang Tua:</span>
+          <input type="text" id="txtNmOrtu" name="txtNmOrtu" placeholder="Masukkan Nama Orang Tua" required value="<?= !empty($ortu) ? $ortu : '' ?>">
+        </label>
+
+        <label for="txtNmKakak"><span>Nama Kakak:</span>
+          <input type="text" id="txtNmKakak" name="txtNmKakak" placeholder="Masukkan Nama Kakak" required value="<?= !empty($kakak) ? $adik : '' ?>">
+        </label>
+
+        <label for="txtNmAdik"><span>Nama Adik:</span>
+          <input type="text" id="txtNmAdik" name="txtNmAdik" placeholder="Masukkan Nama Adik" required value="<?= !empty($adik) ? $adik : '' ?>">
+        </label>
+
+        <button type="submit">Kirim</button>
+        <button type="reset">Batal</button>
+      </form>
+    </section>
     </main>
 
     <script src="script.js"></script>
