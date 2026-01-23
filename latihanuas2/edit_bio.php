@@ -38,8 +38,8 @@
     Ambil data lama dari DB menggunakan prepared statement, 
     jika ada kesalahan, tampilkan penanda error.
   */
-  $stmt = mysqli_prepare($conn, "SELECT id, cnama, cemail, cpesan 
-                                    FROM tbl_tamu WHERE id = ? LIMIT 1");
+  $stmt = mysqli_prepare($conn, "SELECT id, nim, namalengkap, tempat, tanggal, hobi, pasangan, pekerjaan, ortu, kakak, adik 
+                                    FROM tbl_biodata WHERE id = ? LIMIT 1");
   if (!$stmt) {
     $_SESSION['flash_error_bio'] = 'Query tidak benar.';
     redirect_ke('read_bio.php');
@@ -57,9 +57,16 @@
   }
 
   #Nilai awal (prefill form)
-  $nama  = $row['cnama'] ?? '';
-  $email = $row['cemail'] ?? '';
-  $pesan = $row['cpesan'] ?? '';
+  $nim  = $row['nim'] ?? '';
+  $namalengkap = $row['namalengkap'] ?? '';
+  $tempat = $row['tempat'] ?? '';
+  $tanggal = $row['tanggal'] ?? '';
+  $hobi = $row['hobi'] ?? '';
+  $pasangan = $row['pasangan'] ?? '';
+  $pekerjaan = $row['pekerjaan'] ?? '';
+  $ortu = $row['ortu'] ?? '';
+  $kakak = $row['kakak'] ?? '';
+  $adik = $row['adik'] ?? '';
 
   #Ambil error dan nilai old input kalau ada
   $flash_error_bio = $_SESSION['flash_error_bio'] ?? '';

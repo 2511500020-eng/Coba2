@@ -34,5 +34,6 @@ Telah:<br>
     <li>ganti flash_error jadi flash_error_bio</li>
     <li>ganti redirect ke read_bio.php</li>
     <li>sesuaikan mysqli prepare</li>
+    <li>prefill form</li>
 
 </ol>
