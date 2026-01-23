@@ -127,8 +127,10 @@
 
       <form action="proses_update_bio.php" method="POST">
 
+          <input type="hidden" name="id" value="<?= (int)$id; ?>">
+
         <label for="txtNim"><span>NIM:</span>
-          <input type="number" id="txtNimEd" name="txtNimEd" placeholder="Masukkan NIM" required value="<?= !empty($nim) ? $nim : '' ?>">
+          <input type="number" id="txtNimEd" name="txtNimEd" readonly required value="<?= !empty($nim) ? $nim : '' ?>">
         </label>
 
         <label for="txtNmLengkap"><span>Nama Lengkap:</span>

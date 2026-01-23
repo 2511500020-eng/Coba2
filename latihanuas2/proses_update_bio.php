@@ -6,7 +6,7 @@
   #cek method form, hanya izinkan POST
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $_SESSION['flash_error_bio'] = 'Akses tidak valid.';
-    redirect_ke('read.php');
+    redirect_ke('read_bio.php');
   }
 
   #validasi id wajib angka dan > 0
@@ -32,60 +32,81 @@
   $adik = bersihkan($_POST['txtNmAdikEd'] ?? '');
 
   #Validasi sederhana
-  $errors = []; #ini array untuk menampung semua error yang ada
+  $errors_bio = []; #ini array untuk menampung semua error yang ada
 
-  if ($nama === '') {
-    $errors[] = 'Nama wajib diisi.';
+  if ($nim === '') {
+    $errors_bio[] = 'Nim wajib diisi.';
   }
 
-  if ($email === '') {
-    $errors[] = 'Email wajib diisi.';
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = 'Format e-mail tidak valid.';
+  if ($namalengkap === '') {
+    $errors_bio[] = 'Nama wajib diisi.';
   }
 
-  if ($pesan === '') {
-    $errors[] = 'Pesan wajib diisi.';
+  if ($tempat === '') {
+    $errors_bio[] = 'Tempat lahir wajib diisi.';
   }
 
-  if ($captcha === '') {
-    $errors[] = 'Pertanyaan wajib diisi.';
+  if ($tanggal === '') {
+    $errors_bio[] = 'Tanggal lahir wajib diisi.';
   }
 
-  if (mb_strlen($nama) < 3) {
-    $errors[] = 'Nama minimal 3 karakter.';
+  if ($hobi === '') {
+    $errors_bio[] = 'Hobi wajib diisi.';
   }
 
-  if (mb_strlen($pesan) < 10) {
-    $errors[] = 'Pesan minimal 10 karakter.';
+  if ($pasangan === '') {
+    $errors_bio[] = 'Nama pasangan wajib diisi.';
   }
 
-  if ($captcha!=="6") {
-    $errors[] = 'Jawaban '. $captcha.' captcha salah.';
+  if ($pekerjaan === '') {
+    $errors_bio[] = 'Pekerjaan wajib diisi.';
   }
 
-  /*
-  kondisi di bawah ini hanya dikerjakan jika ada error, 
-  simpan nilai lama dan pesan error, lalu redirect (konsep PRG)
-  */
-  if (!empty($errors)) {
-    $_SESSION['old'] = [
-      'nama'  => $nama,
-      'email' => $email,
-      'pesan' => $pesan
-    ];
-
-    $_SESSION['flash_error_bio'] = implode('<br>', $errors);
-    redirect_ke('edit_bio.php?id='. (int)$id);
+  if ($ortu === '') {
+    $errors_bio[] = 'Nama orang tua wajib diisi.';
   }
+
+  if ($kakak === '') {
+    $errors_bio[] = 'Nama kakak wajib diisi.';
+  }
+
+  if ($adik === '') {
+    $errors_bio[] = 'Nama adik wajib diisi.';
+  }
+
+  if (mb_strlen($namalengkap) < 3) {
+    $errors_bio[] = 'Nama minimal 3 karakter.';
+  }
+
+    /*
+    kondisi di bawah ini hanya dikerjakan jika ada error, 
+    simpan nilai lama dan pesan error, lalu redirect (konsep PRG)
+    */
+    if (!empty($errors_bio)) {
+      $_SESSION['old_bio'] = [
+        'nim'  => $nim,
+        'namalengkap' => $namalengkap,
+        'tempat' => $tempat,
+        'tanggal' => $tanggal,
+        'hobi' => $hobi,
+        'pasangan' => $pasangan,
+        'pekerjaan' => $pekerjaan,
+        'ortu' => $ortu,
+        'kakak' => $kakak,
+        'adik' => $adik,
+      ];
+
+      $_SESSION['flash_error_bio'] = implode('<br>', $errors_bio);
+      redirect_ke('edit_bio.php?id='. (int)$id);
+    }
 
   /*
     Prepared statement untuk anti SQL injection.
     menyiapkan query UPDATE dengan prepared statement 
     (WAJIB WHERE id = ?)
   */
-  $stmt = mysqli_prepare($conn, "UPDATE tbl_tamu 
-                                SET cnama = ?, cemail = ?, cpesan = ? 
+  $stmt = mysqli_prepare($conn, "UPDATE tbl_biodata 
+                                SET nim = ?, namalengkap = ?, tempat = ?, tanggal = ?, hobi = ?, pasangan = ?, pekerjaan = ?, ortu = ?, kakak = ?, adik = ? 
                                 WHERE id = ?");
   if (!$stmt) {
     #jika gagal prepare, kirim pesan error (tanpa detail sensitif)
@@ -94,20 +115,27 @@
   }
 
   #bind parameter dan eksekusi (s = string, i = integer)
-  mysqli_stmt_bind_param($stmt, "sssi", $nama, $email, $pesan, $id);
+  mysqli_stmt_bind_param($stmt, "isssssssssi", $nim, $namalengkap, $tempat, $tanggal, $hobi, $pasangan, $pekerjaan, $ortu, $kakak, $adik, $id);
 
-  if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old value
-    unset($_SESSION['old']);
+  if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old_bio value
+    unset($_SESSION['old_bio']);
     /*
-      Redirect balik ke read.php dan tampilkan info sukses.
+      Redirect balik ke read_bio.php dan tampilkan info sukses.
     */
     $_SESSION['flash_sukses_bio'] = 'Terima kasih, data Anda sudah diperbaharui.';
-    redirect_ke('read.php'); #pola PRG: kembali ke data dan exit()
-  } else { #jika gagal, simpan kembali old value dan tampilkan error umum
-    $_SESSION['old'] = [
-      'nama'  => $nama,
-      'email' => $email,
-      'pesan' => $pesan,
+    redirect_ke('read_bio.php'); #pola PRG: kembali ke data dan exit()
+  } else { #jika gagal, simpan kembali old_bio value dan tampilkan error umum
+    $_SESSION['old_bio'] = [
+      'nim'  => $nim,
+      'namalengkap' => $namalengkap,
+      'tempat' => $tempat,
+      'tanggal' => $tanggal,
+      'hobi' => $hobi,
+      'pasangan' => $pasangan,
+      'pekerjaan' => $pekerjaan,
+      'ortu' => $ortu,
+      'kakak' => $kakak,
+      'adik' => $adik,
     ];
     $_SESSION['flash_error_bio'] = 'Data gagal diperbaharui. Silakan coba lagi.';
     redirect_ke('edit_bio.php?id='. (int)$id);

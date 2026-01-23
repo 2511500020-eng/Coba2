@@ -52,8 +52,8 @@
     <tr>
       <td><?= $i++ ?></td>
       <td>
-        <a href="edit.php?cid=<?= (int)$row['cid']; ?>">Edit</a>
-        <a onclick="return confirm('Hapus <?= htmlspecialchars($row['cnama']); ?>?')" href="proses_delete.php?cid=<?= (int)$row['cid']; ?>">Delete</a>
+        <a href="edit_bio.php?id=<?= (int)$row['id']; ?>">Edit</a>
+        <a onclick="return confirm('Hapus <?= htmlspecialchars($row['cnama']); ?>?')" href="proses_delete.php?id=<?= (int)$row['id']; ?>">Delete</a>
       </td>
       <td><?= $row['id']; ?></td>
       <td><?= htmlspecialchars($row['nim']); ?></td>

@@ -39,5 +39,6 @@ Telah:<br>
     <li>old klo error</li>
     <li>form edit biodata</li>
     <li>proses_update_bio.php</li>
+    <li>type id hidden dan nim readonly di form</li>
 
 </ol>
