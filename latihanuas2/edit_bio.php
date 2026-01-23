@@ -73,9 +73,16 @@
   $old_bio = $_SESSION['old_bio'] ?? [];
   unset($_SESSION['flash_error_bio'], $_SESSION['old_bio']);
   if (!empty($old_bio)) {
-    $nama  = $old_bio['nama'] ?? $nama;
-    $email = $old_bio['email'] ?? $email;
-    $pesan = $old_bio['pesan'] ?? $pesan;
+    $nim  = $old_bio['nim'] ?? $nim;
+    $namalengkap = $old_bio['namalengkap'] ?? $namalengkap;
+    $tempat = $old_bio['tempat'] ?? $tempat;
+    $tanggal = $old_bio['tanggal'] ?? $tanggal;
+    $hobi = $old_bio['hobi'] ?? $hobi;
+    $pasangan = $old_bio['pasangan'] ?? $pasangan;
+    $pekerjaan = $old_bio['pekerjaan'] ?? $pekerjaan;
+    $ortu = $old_bio['ortu'] ?? $ortu;
+    $kakak = $old_bio['kakak'] ?? $kakak;
+    $adik = $old_bio['adik'] ?? $adik;
   }
 ?>
 

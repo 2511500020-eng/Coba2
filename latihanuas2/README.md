@@ -36,5 +36,6 @@ Telah:<br>
     <li>sesuaikan mysqli prepare</li>
     <li>prefill form</li>
     <li>old jadi old_bio</li>
+    <li>old klo error</li>
 
 </ol>
