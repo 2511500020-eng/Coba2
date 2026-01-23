@@ -35,5 +35,6 @@ Telah:<br>
     <li>ganti redirect ke read_bio.php</li>
     <li>sesuaikan mysqli prepare</li>
     <li>prefill form</li>
+    <li>old jadi old_bio</li>
 
 </ol>

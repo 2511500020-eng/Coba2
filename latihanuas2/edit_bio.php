@@ -68,14 +68,14 @@
   $kakak = $row['kakak'] ?? '';
   $adik = $row['adik'] ?? '';
 
-  #Ambil error dan nilai old input kalau ada
+  #Ambil error dan nilai old_bio input kalau ada
   $flash_error_bio = $_SESSION['flash_error_bio'] ?? '';
-  $old = $_SESSION['old'] ?? [];
-  unset($_SESSION['flash_error_bio'], $_SESSION['old']);
-  if (!empty($old)) {
-    $nama  = $old['nama'] ?? $nama;
-    $email = $old['email'] ?? $email;
-    $pesan = $old['pesan'] ?? $pesan;
+  $old_bio = $_SESSION['old_bio'] ?? [];
+  unset($_SESSION['flash_error_bio'], $_SESSION['old_bio']);
+  if (!empty($old_bio)) {
+    $nama  = $old_bio['nama'] ?? $nama;
+    $email = $old_bio['email'] ?? $email;
+    $pesan = $old_bio['pesan'] ?? $pesan;
   }
 ?>
 
@@ -117,25 +117,25 @@
 
           <label for="txtNama"><span>Nama:</span>
             <input type="text" id="txtNama" name="txtNamaEd" 
-              placeholder="Masukkan nama" required autocomplete="name"
+              placehold_bioer="Masukkan nama" required autocomplete="name"
               value="<?= !empty($nama) ? $nama : '' ?>">
           </label>
 
           <label for="txtEmail"><span>Email:</span>
             <input type="email" id="txtEmail" name="txtEmailEd" 
-              placeholder="Masukkan email" required autocomplete="email"
+              placehold_bioer="Masukkan email" required autocomplete="email"
               value="<?= !empty($email) ? $email : '' ?>">
           </label>
 
           <label for="txtPesan"><span>Pesan Anda:</span>
             <textarea id="txtPesan" name="txtPesanEd" rows="4" 
-              placeholder="Tulis pesan anda..." 
+              placehold_bioer="Tulis pesan anda..." 
               required><?= !empty($pesan) ? $pesan : '' ?></textarea>
           </label>
 
           <label for="txtCaptcha"><span>Captcha 2 x 3 = ?</span>
             <input type="number" id="txtCaptcha" name="txtCaptcha" 
-              placeholder="Jawab Pertanyaan..." required>
+              placehold_bioer="Jawab Pertanyaan..." required>
           </label>
 
           <button type="submit">Kirim</button>
