@@ -38,5 +38,6 @@ Telah:<br>
     <li>old jadi old_bio</li>
     <li>old klo error</li>
     <li>form edit biodata</li>
+    <li>proses_update_bio.php</li>
 
 </ol>
