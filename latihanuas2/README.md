@@ -41,5 +41,6 @@ Telah:<br>
     <li>proses_update_bio.php</li>
     <li>type id hidden dan nim readonly di form</li>
     <li>proses_delete_bio.php</li>
+    <li>read_inc_bio.php</li>
 
 </ol>

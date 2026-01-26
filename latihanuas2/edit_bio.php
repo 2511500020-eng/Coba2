@@ -162,11 +162,15 @@
         </label>
 
         <label for="txtNmKakak"><span>Nama Kakak:</span>
-          <input type="text" id="txtNmKakakEd" name="txtNmKakakEd" placeholder="Masukkan Nama Kakak" required value="<?= !empty($kakak) ? $adik : '' ?>">
+          <input type="text" id="txtNmKakakEd" name="txtNmKakakEd" placeholder="Masukkan Nama Kakak" required value="<?= !empty($kakak) ? $kakak : '' ?>">
         </label>
 
         <label for="txtNmAdik"><span>Nama Adik:</span>
           <input type="text" id="txtNmAdikEd" name="txtNmAdikEd" placeholder="Masukkan Nama Adik" required value="<?= !empty($adik) ? $adik : '' ?>">
+        </label>
+
+        <label for="txtChapchoi"><span>Captcha 1 + 2 = ?</span>
+          <input type="number" id="txtChapchoiEd" name="txtChapchoiEd" placeholder="Jawab Pertanyaan..."required value="<?= isset($old_bio['chapchoi']) ? htmlspecialchars($old_bio['chapchoi']) : '' ?>">
         </label>
 
         <button type="submit">Kirim</button>

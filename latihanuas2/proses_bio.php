@@ -21,6 +21,8 @@ $pekerjaan = bersihkan($_POST['txtKerja'] ?? '');
 $ortu = bersihkan($_POST['txtNmOrtu'] ?? '');
 $kakak = bersihkan($_POST['txtNmKakak'] ?? '');
 $adik = bersihkan($_POST['txtNmAdik'] ?? '');
+$adik = bersihkan($_POST['txtNmAdik'] ?? '');
+$chapchoi = bersihkan($_POST['txtChapchoi'] ?? '');
 
 #Validasi sederhana
 $errors_bio = []; #ini array untuk menampung semua error yang ada
@@ -65,8 +67,16 @@ if ($adik === '') {
   $errors_bio[] = 'Nama adik wajib diisi.';
 }
 
+if ($chapchoi === '') {
+  $errors_bio[] = 'Captcha wajib diisi.';
+}
+
 if (mb_strlen($namalengkap) < 3) {
   $errors_bio[] = 'Nama minimal 3 karakter.';
+}
+
+if ($chapchoi !== "13") {
+  $errors_bio[] = 'Captcha salah.';
 }
 
 /*
@@ -85,6 +95,7 @@ if (!empty($errors_bio)) {
     'ortu' => $ortu,
     'kakak' => $kakak,
     'adik' => $adik,
+    'chapchoi' => $chapchoi,
   ];
 
   $_SESSION['flash_error_bio'] = implode('<br>', $errors_bio);
@@ -119,25 +130,12 @@ if (mysqli_stmt_execute($stmt)) { #jika berhasil, kosongkan old_bio value, beri 
     'ortu' => $ortu,
     'kakak' => $kakak,
     'adik' => $adik,
+    'chapchoi' => $chapchoi
   ];
   $_SESSION['flash_error_bio'] = 'Data gagal disimpan. Silakan coba lagi.';
   redirect_ke('index.php#biodata');
 }
 #tutup statement
 mysqli_stmt_close($stmt);
-
-$arrBiodata = [
-  "nim" => $_POST["txtNim"] ?? "",
-  "nama" => $_POST["txtNmLengkap"] ?? "",
-  "tempat" => $_POST["txtT4Lhr"] ?? "",
-  "tanggal" => $_POST["txtTglLhr"] ?? "",
-  "hobi" => $_POST["txtHobi"] ?? "",
-  "pasangan" => $_POST["txtPasangan"] ?? "",
-  "pekerjaan" => $_POST["txtKerja"] ?? "",
-  "ortu" => $_POST["txtNmOrtu"] ?? "",
-  "kakak" => $_POST["txtNmKakak"] ?? "",
-  "adik" => $_POST["txtNmAdik"] ?? ""
-];
-$_SESSION["biodata"] = $arrBiodata;
 
 header("location: index.php#about");

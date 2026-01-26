@@ -30,6 +30,7 @@
   $ortu = bersihkan($_POST['txtNmOrtuEd'] ?? '');
   $kakak = bersihkan($_POST['txtNmKakakEd'] ?? '');
   $adik = bersihkan($_POST['txtNmAdikEd'] ?? '');
+  $chapchoi = bersihkan($_POST['txtChapchoiEd'] ?? '');
 
   #Validasi sederhana
   $errors_bio = []; #ini array untuk menampung semua error yang ada
@@ -74,8 +75,16 @@
     $errors_bio[] = 'Nama adik wajib diisi.';
   }
 
+  if ($chapchoi === '') {
+    $errors_bio[] = 'Captcha salah.';
+  }
+
   if (mb_strlen($namalengkap) < 3) {
     $errors_bio[] = 'Nama minimal 3 karakter.';
+  }
+
+  if ($chapchoi !== "3") {
+    $errors_bio[] = 'Captcha salah.';
   }
 
     /*
@@ -94,6 +103,7 @@
         'ortu' => $ortu,
         'kakak' => $kakak,
         'adik' => $adik,
+        'chapchoi' => $chapchoi
       ];
 
       $_SESSION['flash_error_bio'] = implode('<br>', $errors_bio);
@@ -136,6 +146,7 @@
       'ortu' => $ortu,
       'kakak' => $kakak,
       'adik' => $adik,
+      'chapchoi' => $chapchoi
     ];
     $_SESSION['flash_error_bio'] = 'Data gagal diperbaharui. Silakan coba lagi.';
     redirect_ke('edit_bio.php?id='. (int)$id);

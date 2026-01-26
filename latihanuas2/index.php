@@ -103,31 +103,18 @@ require_once __DIR__ . '/fungsi.php';
           <input type="text" id="txtNmAdik" name="txtNmAdik" placeholder="Masukkan Nama Adik" required value="<?= isset($old_bio['adik']) ? htmlspecialchars($old_bio['adik']) : '' ?>">
         </label>
 
+        <label for="txtChapchoi"><span>Captcha 6 + 7 = ?</span>
+          <input type="number" id="txtChapchoi" name="txtChapchoi" placeholder="Jawab Pertanyaan..."required value="<?= isset($old_bio['chapchoi']) ? htmlspecialchars($old_bio['chapchoi']) : '' ?>">
+        </label>
+
         <button type="submit">Kirim</button>
         <button type="reset">Batal</button>
       </form>
     </section>
 
-    <?php
-    $biodata = $_SESSION["biodata"] ?? [];
-
-    $fieldConfig = [
-      "nim" => ["label" => "NIM:", "suffix" => ""],
-      "nama" => ["label" => "Nama Lengkap:", "suffix" => " &#128526;"],
-      "tempat" => ["label" => "Tempat Lahir:", "suffix" => ""],
-      "tanggal" => ["label" => "Tanggal Lahir:", "suffix" => ""],
-      "hobi" => ["label" => "Hobi:", "suffix" => " &#127926;"],
-      "pasangan" => ["label" => "Pasangan:", "suffix" => " &hearts;"],
-      "pekerjaan" => ["label" => "Pekerjaan:", "suffix" => " &copy; 2025"],
-      "ortu" => ["label" => "Nama Orang Tua:", "suffix" => ""],
-      "kakak" => ["label" => "Nama Kakak:", "suffix" => ""],
-      "adik" => ["label" => "Nama Adik:", "suffix" => ""],
-    ];
-    ?>
-
     <section id="about">
       <h2>Tentang Saya</h2>
-      <?= tampilkanBiodata($fieldConfig, $biodata) ?>
+      <?php include 'read_inc_bio.php'; ?>
     </section>
 
     <?php
