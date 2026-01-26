@@ -43,5 +43,6 @@ Telah:<br>
     <li>proses_delete_bio.php</li>
     <li>read_inc_bio.php</li>
     <li>capptcha bio</li>
+    <li>created_at dan modified_at</li>
 
 </ol>

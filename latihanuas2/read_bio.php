@@ -46,6 +46,8 @@
     <th>Ortu</th>
     <th>Kakak</th>
     <th>Adik</th>
+    <th>Created At</th>
+    <th>Last Modified At</th>
   </tr>
   <?php $i = 1; ?>
   <?php while ($row = mysqli_fetch_assoc($q)): ?>
@@ -66,6 +68,8 @@
       <td><?= htmlspecialchars($row['ortu']); ?></td>
       <td><?= htmlspecialchars($row['kakak']); ?></td>
       <td><?= htmlspecialchars($row['adik']); ?></td>
+      <td><?= formatTanggal(htmlspecialchars($row['created_at'])); ?></td>
+      <td><?= formatTanggal(htmlspecialchars($row['modified_at'])); ?></td>
     </tr>
   <?php endwhile; ?>
 </table>
