@@ -42,5 +42,6 @@ Telah:<br>
     <li>type id hidden dan nim readonly di form</li>
     <li>proses_delete_bio.php</li>
     <li>read_inc_bio.php</li>
+    <li>capptcha bio</li>
 
 </ol>
